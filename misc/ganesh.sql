@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1deb2ubuntu2
+-- http://www.phpmyadmin.net
 --
--- Gép: localhost:3306
--- Létrehozás ideje: 2017. Okt 11. 19:52
--- Kiszolgáló verziója: 5.7.19-0ubuntu0.17.04.1
--- PHP verzió: 7.0.22-0ubuntu0.17.04.1
+-- Gép: localhost  készítette: SE :)
+-- Létrehozás ideje: 2017. Okt 16. 10:28
+-- Kiszolgáló verziója: 5.7.19-0ubuntu0.16.04.1
+-- PHP verzió: 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,7 +30,7 @@ CREATE TABLE `activities` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `festival_id` smallint(5) UNSIGNED NOT NULL,
   `department_id` tinyint(3) UNSIGNED NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
   `manpower` smallint(5) UNSIGNED DEFAULT NULL
@@ -60,7 +60,7 @@ CREATE TABLE `departments` (
   `id` tinyint(3) UNSIGNED NOT NULL,
   `manager_id` tinyint(3) UNSIGNED NOT NULL,
   `place_id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(45) DEFAULT NULL
+  `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE `departments` (
 CREATE TABLE `festivals` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `place_id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -85,7 +85,7 @@ CREATE TABLE `festivals` (
 
 CREATE TABLE `managers` (
   `id` tinyint(3) UNSIGNED NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -98,7 +98,7 @@ CREATE TABLE `managers` (
 
 CREATE TABLE `places` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `lat` float(10,6) DEFAULT NULL,
   `lng` float(10,6) DEFAULT NULL
@@ -112,7 +112,7 @@ CREATE TABLE `places` (
 
 CREATE TABLE `users` (
   `id` smallint(5) UNSIGNED NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `phone` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `female` tinyint(1) DEFAULT '1'
@@ -192,7 +192,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT a táblához `festivals`
 --
 ALTER TABLE `festivals`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT a táblához `managers`
 --
@@ -202,7 +202,7 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT a táblához `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT a táblához `users`
 --
