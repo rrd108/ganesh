@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.6deb4
+-- https://www.phpmyadmin.net/
 --
--- Gép: localhost  készítette: SE :)
--- Létrehozás ideje: 2017. Okt 16. 10:28
--- Kiszolgáló verziója: 5.7.19-0ubuntu0.16.04.1
--- PHP verzió: 7.0.22-0ubuntu0.16.04.1
+-- Gép: localhost:3306
+-- Létrehozás ideje: 2017. Okt 17. 10:25
+-- Kiszolgáló verziója: 5.7.19-0ubuntu0.17.04.1
+-- PHP verzió: 7.0.22-0ubuntu0.17.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -58,8 +58,8 @@ CREATE TABLE `activities_users` (
 
 CREATE TABLE `departments` (
   `id` tinyint(3) UNSIGNED NOT NULL,
-  `manager_id` tinyint(3) UNSIGNED NOT NULL,
   `place_id` smallint(5) UNSIGNED NOT NULL,
+  `users_id` smallint(5) UNSIGNED NOT NULL,
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,19 +75,6 @@ CREATE TABLE `festivals` (
   `name` varchar(255) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `managers`
---
-
-CREATE TABLE `managers` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `phone` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -143,8 +130,8 @@ ALTER TABLE `activities_users`
 --
 ALTER TABLE `departments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_departments_managers1_idx` (`manager_id`),
-  ADD KEY `fk_departments_places1_idx` (`place_id`);
+  ADD KEY `fk_departments_places1_idx` (`place_id`),
+  ADD KEY `fk_departments_users1_idx` (`users_id`);
 
 --
 -- A tábla indexei `festivals`
@@ -152,13 +139,6 @@ ALTER TABLE `departments`
 ALTER TABLE `festivals`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_festivals_places_idx` (`place_id`);
-
---
--- A tábla indexei `managers`
---
-ALTER TABLE `managers`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name_UNIQUE` (`name`);
 
 --
 -- A tábla indexei `places`
@@ -192,17 +172,12 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT a táblához `festivals`
 --
 ALTER TABLE `festivals`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT a táblához `managers`
---
-ALTER TABLE `managers`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT a táblához `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT a táblához `users`
 --
@@ -230,8 +205,8 @@ ALTER TABLE `activities_users`
 -- Megkötések a táblához `departments`
 --
 ALTER TABLE `departments`
-  ADD CONSTRAINT `fk_departments_managers1` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_departments_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_departments_places1` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_departments_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Megkötések a táblához `festivals`
