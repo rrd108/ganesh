@@ -10,8 +10,6 @@
         <li><?= $this->Form->postLink(__('Delete Department'), ['action' => 'delete', $department->id], ['confirm' => __('Are you sure you want to delete # {0}?', $department->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Departments'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Department'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Managers'), ['controller' => 'Managers', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Manager'), ['controller' => 'Managers', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Places'), ['controller' => 'Places', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Place'), ['controller' => 'Places', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?> </li>
@@ -22,20 +20,20 @@
     <h3><?= h($department->name) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= h($department->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Manager') ?></th>
-            <td><?= $department->has('manager') ? $this->Html->link($department->manager->name, ['controller' => 'Managers', 'action' => 'view', $department->manager->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Place') ?></th>
             <td><?= $department->has('place') ? $this->Html->link($department->place->name, ['controller' => 'Places', 'action' => 'view', $department->place->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('User Id') ?></th>
+            <td><?= h($department->user_id) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($department->name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($department->id) ?></td>
         </tr>
     </table>
     <div class="related">

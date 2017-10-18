@@ -22,20 +22,72 @@
             <td><?= h($user->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($user->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Phone') ?></th>
-            <td><?= h($user->phone) ?></td>
+            <th scope="row"><?= __('Username') ?></th>
+            <td><?= h($user->username) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Email') ?></th>
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Female') ?></th>
-            <td><?= $user->female ? __('Yes') : __('No'); ?></td>
+            <th scope="row"><?= __('Password') ?></th>
+            <td><?= h($user->password) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('First Name') ?></th>
+            <td><?= h($user->first_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Last Name') ?></th>
+            <td><?= h($user->last_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Token') ?></th>
+            <td><?= h($user->token) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Api Token') ?></th>
+            <td><?= h($user->api_token) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Secret') ?></th>
+            <td><?= h($user->secret) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Role') ?></th>
+            <td><?= h($user->role) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Token Expires') ?></th>
+            <td><?= h($user->token_expires) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Activation Date') ?></th>
+            <td><?= h($user->activation_date) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Tos Date') ?></th>
+            <td><?= h($user->tos_date) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($user->created) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modified') ?></th>
+            <td><?= h($user->modified) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Secret Verified') ?></th>
+            <td><?= $user->secret_verified ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Active') ?></th>
+            <td><?= $user->active ? __('Yes') : __('No'); ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Is Superuser') ?></th>
+            <td><?= $user->is_superuser ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
     <div class="related">

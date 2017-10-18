@@ -7,8 +7,8 @@ use Cake\ORM\Entity;
  * Department Entity
  *
  * @property int $id
- * @property int $manager_id
  * @property int $place_id
+ * @property string $user_id
  * @property string $name
  *
  * @property \App\Model\Entity\Manager $manager
@@ -28,11 +28,7 @@ class Department extends Entity
      * @var array
      */
     protected $_accessible = [
-        'manager_id' => true,
-        'place_id' => true,
-        'name' => true,
-        'manager' => true,
-        'place' => true,
-        'activities' => true
+        '*' => true,
+        'id' => false
     ];
 }

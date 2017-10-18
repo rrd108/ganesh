@@ -20,9 +20,8 @@ class ActivitiesUsersControllerTest extends IntegrationTestCase
         'app.users',
         'app.activities',
         'app.festivals',
-        'app.departments',
-        'app.managers',
-        'app.places'
+        'app.places',
+        'app.departments'
     ];
 
     /**

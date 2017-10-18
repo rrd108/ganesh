@@ -55,11 +55,12 @@ class FestivalsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->dateTime('start')

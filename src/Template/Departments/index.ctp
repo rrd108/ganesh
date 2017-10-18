@@ -7,8 +7,6 @@
     <ul class="menu vertical">
         <li class="menu-text"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Department'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Managers'), ['controller' => 'Managers', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Manager'), ['controller' => 'Managers', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Places'), ['controller' => 'Places', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Place'), ['controller' => 'Places', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Activities'), ['controller' => 'Activities', 'action' => 'index']) ?></li>
@@ -21,8 +19,8 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('manager_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('place_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -30,9 +28,9 @@
         <tbody>
             <?php foreach ($departments as $department): ?>
             <tr>
-                <td><?= h($department->id) ?></td>
-                <td><?= $department->has('manager') ? $this->Html->link($department->manager->name, ['controller' => 'Managers', 'action' => 'view', $department->manager->id]) : '' ?></td>
+                <td><?= $this->Number->format($department->id) ?></td>
                 <td><?= $department->has('place') ? $this->Html->link($department->place->name, ['controller' => 'Places', 'action' => 'view', $department->place->id]) : '' ?></td>
+                <td><?= h($department->user_id) ?></td>
                 <td><?= h($department->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $department->id]) ?>

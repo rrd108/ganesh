@@ -28,9 +28,8 @@ class ActivitiesUsersTableTest extends TestCase
         'app.users',
         'app.activities',
         'app.festivals',
-        'app.departments',
-        'app.managers',
-        'app.places'
+        'app.places',
+        'app.departments'
     ];
 
     /**

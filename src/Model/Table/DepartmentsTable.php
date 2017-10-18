@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Departments Model
  *
- * @property \App\Model\Table\ManagersTable|\Cake\ORM\Association\BelongsTo $Managers
  * @property \App\Model\Table\PlacesTable|\Cake\ORM\Association\BelongsTo $Places
+ * @property |\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\ActivitiesTable|\Cake\ORM\Association\HasMany $Activities
  *
  * @method \App\Model\Entity\Department get($primaryKey, $options = [])
@@ -38,12 +38,12 @@ class DepartmentsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Managers', [
-            'foreignKey' => 'manager_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Places', [
             'foreignKey' => 'place_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Activities', [
@@ -60,11 +60,12 @@ class DepartmentsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         return $validator;
     }
@@ -78,8 +79,8 @@ class DepartmentsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['manager_id'], 'Managers'));
         $rules->add($rules->existsIn(['place_id'], 'Places'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }

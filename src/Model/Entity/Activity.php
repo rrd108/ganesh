@@ -31,14 +31,7 @@ class Activity extends Entity
      * @var array
      */
     protected $_accessible = [
-        'festival_id' => true,
-        'department_id' => true,
-        'name' => true,
-        'start' => true,
-        'end' => true,
-        'manpower' => true,
-        'festival' => true,
-        'department' => true,
-        'users' => true
+        '*' => true,
+        'id' => false
     ];
 }

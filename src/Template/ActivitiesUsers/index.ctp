@@ -18,8 +18,9 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('activitie_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('activity_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('start') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('end') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fulltime') ?></th>
@@ -29,8 +30,9 @@
         <tbody>
             <?php foreach ($activitiesUsers as $activitiesUser): ?>
             <tr>
+                <td><?= $this->Number->format($activitiesUser->id) ?></td>
                 <td><?= $activitiesUser->has('user') ? $this->Html->link($activitiesUser->user->name, ['controller' => 'Users', 'action' => 'view', $activitiesUser->user->id]) : '' ?></td>
-                <td><?= $activitiesUser->has('activity') ? $this->Html->link($activitiesUser->activity->name, ['controller' => 'Activities', 'action' => 'view', $activitiesUser->activity->id]) : '' ?></td>
+                <td><?= $this->Number->format($activitiesUser->activity_id) ?></td>
                 <td><?= h($activitiesUser->start) ?></td>
                 <td><?= h($activitiesUser->end) ?></td>
                 <td><?= h($activitiesUser->fulltime) ?></td>

@@ -27,9 +27,8 @@ class FestivalsTableTest extends TestCase
         'app.festivals',
         'app.places',
         'app.departments',
-        'app.managers',
-        'app.activities',
         'app.users',
+        'app.activities',
         'app.activities_users'
     ];
 

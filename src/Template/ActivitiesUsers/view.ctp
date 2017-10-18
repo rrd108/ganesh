@@ -24,8 +24,12 @@
             <td><?= $activitiesUser->has('user') ? $this->Html->link($activitiesUser->user->name, ['controller' => 'Users', 'action' => 'view', $activitiesUser->user->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Activity') ?></th>
-            <td><?= $activitiesUser->has('activity') ? $this->Html->link($activitiesUser->activity->name, ['controller' => 'Activities', 'action' => 'view', $activitiesUser->activity->id]) : '' ?></td>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($activitiesUser->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Activity Id') ?></th>
+            <td><?= $this->Number->format($activitiesUser->activity_id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Start') ?></th>

@@ -19,7 +19,10 @@ class DepartmentsControllerTest extends IntegrationTestCase
         'app.departments',
         'app.managers',
         'app.places',
-        'app.activities'
+        'app.festivals',
+        'app.activities',
+        'app.users',
+        'app.activities_users'
     ];
 
     /**

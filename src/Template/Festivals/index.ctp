@@ -29,7 +29,7 @@
         <tbody>
             <?php foreach ($festivals as $festival): ?>
             <tr>
-                <td><?= h($festival->id) ?></td>
+                <td><?= $this->Number->format($festival->id) ?></td>
                 <td><?= $festival->has('place') ? $this->Html->link($festival->place->name, ['controller' => 'Places', 'action' => 'view', $festival->place->id]) : '' ?></td>
                 <td><?= h($festival->name) ?></td>
                 <td><?= h($festival->start) ?></td>

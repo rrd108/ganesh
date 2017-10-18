@@ -18,9 +18,8 @@ class ActivitiesControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.activities',
         'app.festivals',
-        'app.departments',
-        'app.managers',
         'app.places',
+        'app.departments',
         'app.users',
         'app.activities_users'
     ];

@@ -1,7 +1,7 @@
 <?php
 /**
- * @var \App\View\AppView $this
- */
+  * @var \App\View\AppView $this
+  */
 ?>
 <nav class="small-3 medium-2 large-2 columns" id="actions-sidebar">
     <ul class="menu vertical">

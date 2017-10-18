@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property |\Cake\ORM\Association\HasMany $Departments
+ * @property |\Cake\ORM\Association\HasMany $SocialAccounts
  * @property \App\Model\Table\ActivitiesTable|\Cake\ORM\Association\BelongsToMany $Activities
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -18,6 +20,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class UsersTable extends Table
 {
@@ -36,6 +40,14 @@ class UsersTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('Departments', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('SocialAccounts', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->belongsToMany('Activities', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'activity_id',
@@ -52,23 +64,64 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->uuid('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->allowEmpty('name');
-
-        $validator
-            ->scalar('phone')
-            ->allowEmpty('phone');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
 
         $validator
             ->email('email')
             ->allowEmpty('email');
 
         $validator
-            ->boolean('female')
-            ->allowEmpty('female');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
+
+        $validator
+            ->allowEmpty('first_name');
+
+        $validator
+            ->allowEmpty('last_name');
+
+        $validator
+            ->allowEmpty('token');
+
+        $validator
+            ->dateTime('token_expires')
+            ->allowEmpty('token_expires');
+
+        $validator
+            ->allowEmpty('api_token');
+
+        $validator
+            ->dateTime('activation_date')
+            ->allowEmpty('activation_date');
+
+        $validator
+            ->allowEmpty('secret');
+
+        $validator
+            ->boolean('secret_verified')
+            ->allowEmpty('secret_verified');
+
+        $validator
+            ->dateTime('tos_date')
+            ->allowEmpty('tos_date');
+
+        $validator
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
+
+        $validator
+            ->boolean('is_superuser')
+            ->requirePresence('is_superuser', 'create')
+            ->notEmpty('is_superuser');
+
+        $validator
+            ->allowEmpty('role');
 
         return $validator;
     }
@@ -82,6 +135,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
 
         return $rules;

@@ -6,11 +6,24 @@ use Cake\ORM\Entity;
 /**
  * User Entity
  *
- * @property int $id
- * @property string $name
- * @property string $phone
+ * @property string $id
+ * @property string $username
  * @property string $email
- * @property bool $female
+ * @property string $password
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $token
+ * @property \Cake\I18n\FrozenTime $token_expires
+ * @property string $api_token
+ * @property \Cake\I18n\FrozenTime $activation_date
+ * @property string $secret
+ * @property bool $secret_verified
+ * @property \Cake\I18n\FrozenTime $tos_date
+ * @property bool $active
+ * @property bool $is_superuser
+ * @property string $role
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\Activity[] $activities
  */
@@ -27,10 +40,17 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'phone' => true,
-        'email' => true,
-        'female' => true,
-        'activities' => true
+        '*' => true,
+        'id' => false
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password',
+        'token'
     ];
 }

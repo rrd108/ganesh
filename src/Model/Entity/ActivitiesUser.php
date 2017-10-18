@@ -6,8 +6,9 @@ use Cake\ORM\Entity;
 /**
  * ActivitiesUser Entity
  *
- * @property int $user_id
- * @property int $activitie_id
+ * @property int $id
+ * @property string $user_id
+ * @property int $activity_id
  * @property \Cake\I18n\FrozenTime $start
  * @property \Cake\I18n\FrozenTime $end
  * @property bool $fulltime
@@ -28,10 +29,8 @@ class ActivitiesUser extends Entity
      * @var array
      */
     protected $_accessible = [
-        'start' => true,
-        'end' => true,
-        'fulltime' => true,
-        'user' => true,
-        'activity' => true
+        '*' => true,
+        'user_id' => false,
+        'activitie_id' => false
     ];
 }

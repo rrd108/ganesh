@@ -1,7 +1,7 @@
 <?php
 /**
- * @var \App\View\AppView $this
- */
+  * @var \App\View\AppView $this
+  */
 ?>
 <nav class="small-3 medium-2 large-2 columns" id="actions-sidebar">
     <ul class="menu vertical">
@@ -18,6 +18,8 @@
     <fieldset>
         <legend><?= __('Add Activities User') ?></legend>
         <?php
+            echo $this->Form->control('id');
+            echo $this->Form->control('activity_id');
             echo $this->Form->control('start', ['empty' => true]);
             echo $this->Form->control('end', ['empty' => true]);
             echo $this->Form->control('fulltime');

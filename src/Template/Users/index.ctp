@@ -17,10 +17,23 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('phone') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('female') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('token') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('token_expires') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('api_token') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('activation_date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('secret') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('secret_verified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('tos_date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('is_superuser') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,10 +41,23 @@
             <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= h($user->id) ?></td>
-                <td><?= h($user->name) ?></td>
-                <td><?= h($user->phone) ?></td>
+                <td><?= h($user->username) ?></td>
                 <td><?= h($user->email) ?></td>
-                <td><?= h($user->female) ?></td>
+                <td><?= h($user->password) ?></td>
+                <td><?= h($user->first_name) ?></td>
+                <td><?= h($user->last_name) ?></td>
+                <td><?= h($user->token) ?></td>
+                <td><?= h($user->token_expires) ?></td>
+                <td><?= h($user->api_token) ?></td>
+                <td><?= h($user->activation_date) ?></td>
+                <td><?= h($user->secret) ?></td>
+                <td><?= h($user->secret_verified) ?></td>
+                <td><?= h($user->tos_date) ?></td>
+                <td><?= h($user->active) ?></td>
+                <td><?= h($user->is_superuser) ?></td>
+                <td><?= h($user->role) ?></td>
+                <td><?= h($user->created) ?></td>
+                <td><?= h($user->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>

@@ -20,16 +20,16 @@
     <h3><?= h($place->name) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= h($place->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($place->name) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Address') ?></th>
             <td><?= h($place->address) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($place->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Lat') ?></th>
@@ -46,16 +46,16 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Manager Id') ?></th>
                 <th scope="col"><?= __('Place Id') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($place->departments as $departments): ?>
             <tr>
                 <td><?= h($departments->id) ?></td>
-                <td><?= h($departments->manager_id) ?></td>
                 <td><?= h($departments->place_id) ?></td>
+                <td><?= h($departments->user_id) ?></td>
                 <td><?= h($departments->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Departments', 'action' => 'view', $departments->id]) ?>
