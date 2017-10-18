@@ -28,6 +28,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Html->css('foundation.min.css') ?>
     <?= $this->Html->css('foundation-icons.css') ?>
+    <?= $this->Html->css('ganesh.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -48,8 +49,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+    <div class="container clearfix main-container">
+        <div class="row">
+            <?= $this->fetch('content') ?>
+        </div>
     </div>
     <footer>
     </footer>
