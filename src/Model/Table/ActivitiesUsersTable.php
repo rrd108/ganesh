@@ -42,7 +42,7 @@ class ActivitiesUsersTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Activities', [
-            'foreignKey' => 'activitie_id',
+            'foreignKey' => 'activity_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -55,6 +55,10 @@ class ActivitiesUsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
         $validator
             ->dateTime('start')
             ->allowEmpty('start');
@@ -80,7 +84,7 @@ class ActivitiesUsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['activitie_id'], 'Activities'));
+        $rules->add($rules->existsIn(['activity_id'], 'Activities'));
 
         return $rules;
     }

@@ -29,7 +29,7 @@
         <tbody>
             <?php foreach ($places as $place): ?>
             <tr>
-                <td><?= h($place->id) ?></td>
+                <td><?= $this->Number->format($place->id) ?></td>
                 <td><?= h($place->name) ?></td>
                 <td><?= h($place->address) ?></td>
                 <td><?= $this->Number->format($place->lat) ?></td>

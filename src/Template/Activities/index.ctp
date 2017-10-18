@@ -39,7 +39,7 @@
                 <td><?= h($activity->name) ?></td>
                 <td><?= h($activity->start) ?></td>
                 <td><?= h($activity->end) ?></td>
-                <td><?= h($activity->manpower) ?></td>
+                <td><?= $this->Number->format($activity->manpower) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $activity->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $activity->id]) ?>

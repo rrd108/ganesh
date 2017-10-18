@@ -20,16 +20,16 @@
     <h3><?= h($festival->name) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= h($festival->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Place') ?></th>
             <td><?= $festival->has('place') ? $this->Html->link($festival->place->name, ['controller' => 'Places', 'action' => 'view', $festival->place->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($festival->name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($festival->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Start') ?></th>

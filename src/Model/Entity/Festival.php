@@ -28,11 +28,7 @@ class Festival extends Entity
      * @var array
      */
     protected $_accessible = [
-        'place_id' => true,
-        'name' => true,
-        'start' => true,
-        'end' => true,
-        'place' => true,
-        'activities' => true
+        '*' => true,
+        'id' => false
     ];
 }

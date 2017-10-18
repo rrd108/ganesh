@@ -66,8 +66,8 @@ class ActivitiesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('name')
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->dateTime('start')
@@ -78,6 +78,7 @@ class ActivitiesTable extends Table
             ->allowEmpty('end');
 
         $validator
+            ->integer('manpower')
             ->allowEmpty('manpower');
 
         return $validator;

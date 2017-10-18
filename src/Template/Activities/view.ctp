@@ -34,12 +34,12 @@
             <td><?= h($activity->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Manpower') ?></th>
-            <td><?= h($activity->manpower) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($activity->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Manpower') ?></th>
+            <td><?= $this->Number->format($activity->manpower) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Start') ?></th>
@@ -56,19 +56,45 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Phone') ?></th>
+                <th scope="col"><?= __('Username') ?></th>
                 <th scope="col"><?= __('Email') ?></th>
-                <th scope="col"><?= __('Female') ?></th>
+                <th scope="col"><?= __('Password') ?></th>
+                <th scope="col"><?= __('First Name') ?></th>
+                <th scope="col"><?= __('Last Name') ?></th>
+                <th scope="col"><?= __('Token') ?></th>
+                <th scope="col"><?= __('Token Expires') ?></th>
+                <th scope="col"><?= __('Api Token') ?></th>
+                <th scope="col"><?= __('Activation Date') ?></th>
+                <th scope="col"><?= __('Secret') ?></th>
+                <th scope="col"><?= __('Secret Verified') ?></th>
+                <th scope="col"><?= __('Tos Date') ?></th>
+                <th scope="col"><?= __('Active') ?></th>
+                <th scope="col"><?= __('Is Superuser') ?></th>
+                <th scope="col"><?= __('Role') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($activity->users as $users): ?>
             <tr>
                 <td><?= h($users->id) ?></td>
-                <td><?= h($users->name) ?></td>
-                <td><?= h($users->phone) ?></td>
+                <td><?= h($users->username) ?></td>
                 <td><?= h($users->email) ?></td>
-                <td><?= h($users->female) ?></td>
+                <td><?= h($users->password) ?></td>
+                <td><?= h($users->first_name) ?></td>
+                <td><?= h($users->last_name) ?></td>
+                <td><?= h($users->token) ?></td>
+                <td><?= h($users->token_expires) ?></td>
+                <td><?= h($users->api_token) ?></td>
+                <td><?= h($users->activation_date) ?></td>
+                <td><?= h($users->secret) ?></td>
+                <td><?= h($users->secret_verified) ?></td>
+                <td><?= h($users->tos_date) ?></td>
+                <td><?= h($users->active) ?></td>
+                <td><?= h($users->is_superuser) ?></td>
+                <td><?= h($users->role) ?></td>
+                <td><?= h($users->created) ?></td>
+                <td><?= h($users->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>

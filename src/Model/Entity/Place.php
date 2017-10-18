@@ -28,11 +28,7 @@ class Place extends Entity
      * @var array
      */
     protected $_accessible = [
-        'name' => true,
-        'address' => true,
-        'lat' => true,
-        'lng' => true,
-        'departments' => true,
-        'festivals' => true
+        '*' => true,
+        'id' => false
     ];
 }
