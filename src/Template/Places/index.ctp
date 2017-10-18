@@ -32,8 +32,12 @@
                 <td><?= $this->Number->format($place->id) ?></td>
                 <td><?= h($place->name) ?></td>
                 <td><?= h($place->address) ?></td>
-                <td><?= $this->Number->format($place->lat) ?></td>
-                <td><?= $this->Number->format($place->lng) ?></td>
+                <td><?php if($place->lat !=0 ){
+                        $this->Number->format($place->lat);
+                    }?></td>
+                <td><?php if($place->lng !=0 ){
+                        $this->Number->format($place->lng);
+                    }?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $place->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $place->id]) ?>
