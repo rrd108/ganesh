@@ -18,21 +18,21 @@
     <fieldset>
         <legend><?= __('Add Festival') ?></legend>
         <?php
-        echo $this->Form->control('place_id', ['options' => $places]);
-        echo $this->Form->control('name');
+        echo $this->Form->control('place_id', ['options' => $places],__('Place'));
+        echo $this->Form->control(__('name'));
         ?>
-        <?= $this->Form->label('Festivals.start', 'Start date & time'); ?>
+        <?= $this->Form->label('Festivals.start', __('Start date & time')); ?>
         <?= $this->Form->dateTime('start', [
-            'minYear' => 2017,
-            'maxYear' => 2020,
+            'minYear' => date('Y')-2,
+            'maxYear' => date('Y')+2,
             'monthNames' => false,
             'orderYear' => 'asc',
             'empty' => [
-                'year' => 'Choose year...',
-                'month' => 'Choose month...',
-                'day' => 'Choose day...',
-                'hour' => 'Choose hour...',
-                'minute' => 'Choose minute...'
+                'year' => __('Choose year...'),
+                'month' => __('Choose month...'),
+                'day' => __('Choose day...'),
+                'hour' => __('Choose hour...'),
+                'minute' => __('Choose minute...')
             ],
             'year' => [
                 'class' => 'columns medium-3'
@@ -51,18 +51,18 @@
             ]
 
         ]); ?>
-        <?= $this->Form->label('Festivals.end', 'End date & time'); ?>
+        <?= $this->Form->label('Festivals.end', __('End date & time')); ?>
         <?= $this->Form->dateTime('end', [
-            'minYear' => 2017,
-            'maxYear' => 2020,
+            'minYear' => date('Y')-2,
+            'maxYear' => date('Y')+2,
             'monthNames' => false,
             'orderYear' => 'asc',
             'empty' => [
-                'year' => 'Choose year...',
-                'month' => 'Choose month...',
-                'day' => 'Choose day...',
-                'hour' => 'Choose hour...',
-                'minute' => 'Choose minute...'
+                'year' => __('Choose year...'),
+                'month' => __('Choose month...'),
+                'day' => __('Choose day...'),
+                'hour' => __('Choose hour...'),
+                'minute' => __('Choose minute...')
             ],
             'year' => [
                 'class' => 'columns medium-3'
