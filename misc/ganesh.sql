@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: localhost:3306
--- Létrehozás ideje: 2017. Okt 17. 10:55
+-- Létrehozás ideje: 2017. Okt 23. 16:21
 -- Kiszolgáló verziója: 5.7.19-0ubuntu0.17.04.1
 -- PHP verzió: 7.0.22-0ubuntu0.17.04.1
 
@@ -35,6 +35,14 @@ CREATE TABLE `activities` (
   `end` datetime DEFAULT NULL,
   `manpower` smallint(5) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `activities`
+--
+
+INSERT INTO `activities` (`id`, `festival_id`, `department_id`, `name`, `start`, `end`, `manpower`) VALUES
+(3, 1, 1, 'főzés', '2018-07-10 08:00:00', '2018-07-10 17:00:00', 5),
+(4, 1, 2, 'templomi vezetés', '2018-07-10 11:00:00', '2018-07-10 18:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -86,6 +94,14 @@ CREATE TABLE `departments` (
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- A tábla adatainak kiíratása `departments`
+--
+
+INSERT INTO `departments` (`id`, `place_id`, `user_id`, `name`) VALUES
+(1, 1, 'fdd6d5b4-daa5-4384-af0e-250efd2137fa', 'konyha'),
+(2, 1, 'abcaee8f-8d70-479b-a471-a984833b0f5c', 'vendégvezetés');
+
 -- --------------------------------------------------------
 
 --
@@ -100,6 +116,14 @@ CREATE TABLE `festivals` (
   `end` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- A tábla adatainak kiíratása `festivals`
+--
+
+INSERT INTO `festivals` (`id`, `place_id`, `name`, `start`, `end`) VALUES
+(1, 1, 'Búcsú 2018', '2018-07-10 08:00:00', '2018-07-13 20:00:00'),
+(2, 2, 'Gaszto nap', '2018-06-03 08:00:00', '2018-06-03 20:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -113,6 +137,14 @@ CREATE TABLE `places` (
   `lat` float(10,6) DEFAULT NULL,
   `lng` float(10,6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `places`
+--
+
+INSERT INTO `places` (`id`, `name`, `address`, `lat`, `lng`) VALUES
+(1, 'Krisna-völgy', '8699 Somogyvámos Gauranga tér 1', NULL, NULL),
+(2, 'Budapest templom', '1039 Budapest, Lehel u. 15-17.', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -164,6 +196,18 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- A tábla adatainak kiíratása `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `first_name`, `last_name`, `token`, `token_expires`, `api_token`, `activation_date`, `secret`, `secret_verified`, `tos_date`, `active`, `is_superuser`, `role`, `created`, `modified`) VALUES
+('605aee8f-8d70-479b-a471-a984833b0f5c', 'rrd', 'rrd@krisna.hu', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', '', '', '', NULL, '', NULL, '', 1, NULL, 1, 1, 'superuser', '2017-10-23 13:47:54', '2017-10-23 13:47:54'),
+('6af07176-bad7-491b-8a1d-047a9705fb9b', 'bálint', 'balint.kovacs@sehol.se', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', 'Kovács', 'Bálint', 'a688bf2a18c72d021b96dc14a44ba352', '2017-10-23 15:17:48', NULL, '2017-10-23 00:00:00', NULL, 1, '2017-10-23 14:17:48', 1, 0, 'user', '2017-10-23 14:17:48', '2017-10-23 14:17:48'),
+('7af07176-bad7-491b-8a1d-047a9705fb9b', 'dorka', 'dorka@sehol.se', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', 'Szabó', 'Dorka', '', '2017-10-23 15:17:48', NULL, '2017-10-23 00:00:00', NULL, 1, '2017-10-23 14:17:48', 1, 0, 'user', '2017-10-23 14:17:48', '2017-10-23 14:17:48'),
+('abcaee8f-8d70-479b-a471-a984833b0f5c', 'kldd', 'kldd@krisna.hu', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', 'Kundalata', 'dd', NULL, NULL, NULL, '2017-10-23 00:00:00', NULL, 1, NULL, 1, 0, 'manager', '2017-10-23 00:00:00', '2017-10-23 00:00:00'),
+('fdd6d5b4-daa5-4384-af0e-250efd2137fa', 'rvd', 'rvd@krisna.hu', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', 'Radha-vallabha', 'd', '', NULL, '', NULL, '', 1, NULL, 1, 0, 'manager', '2017-10-23 13:48:32', '2017-10-23 13:48:32'),
+('raf07176-bad7-491b-8a1d-047a9705fb9b', 'bella', 'bella@sehol.se', '$2y$10$7Qyi7YY2/C6.1qJlFmCrXOFUMRGr6QyLGpD8jEHe4xoTCzr2n59tm', 'Fehér', 'Bella', '', '2017-10-23 15:17:48', NULL, '2017-10-23 00:00:00', NULL, 1, '2017-10-23 14:17:48', 1, 0, 'user', '2017-10-23 14:17:48', '2017-10-23 14:17:48');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -234,7 +278,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT a táblához `activities_users`
 --
@@ -244,17 +288,17 @@ ALTER TABLE `activities_users`
 -- AUTO_INCREMENT a táblához `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT a táblához `festivals`
 --
 ALTER TABLE `festivals`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT a táblához `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Megkötések a kiírt táblákhoz
 --
