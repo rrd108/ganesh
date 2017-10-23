@@ -19,7 +19,7 @@
         <legend><?= __('Add Department') ?></legend>
         <?php
             echo $this->Form->control('place_id', ['options' => $places]);
-            echo $this->Form->control('user_id');
+            echo $this->Form->control('user_id', ['options' => $managers]);
             echo $this->Form->control('name');
         ?>
     </fieldset>

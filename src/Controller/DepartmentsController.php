@@ -64,7 +64,8 @@ class DepartmentsController extends AppController
             $this->Flash->error(__('The department could not be saved. Please, try again.'));
         }
         $places = $this->Departments->Places->find('list', ['limit' => 200]);
-        $this->set(compact('department', 'places'));
+        $managers = $this->Departments->Managers->find('list', ['limit' => 200]);
+        $this->set(compact('department', 'places', 'managers'));
         $this->set('_serialize', ['department']);
     }
 

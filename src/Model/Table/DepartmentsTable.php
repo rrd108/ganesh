@@ -42,7 +42,8 @@ class DepartmentsTable extends Table
             'foreignKey' => 'place_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users', [
+        $this->belongsTo('Managers', [
+            'className' => 'Users',
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
@@ -80,7 +81,7 @@ class DepartmentsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['place_id'], 'Places'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['user_id'], 'Managers'));
 
         return $rules;
     }
