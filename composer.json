@@ -1,6 +1,6 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
+    "name": "rrd108/ganesh",
+    "description": "Festival organizer",
     "homepage": "https://cakephp.org",
     "type": "project",
     "license": "MIT",
