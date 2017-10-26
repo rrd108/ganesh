@@ -56,6 +56,7 @@ class ActivitiesController extends AppController
         $activity = $this->Activities->newEntity();
         if ($this->request->is('post')) {
             $activity = $this->Activities->patchEntity($activity, $this->request->getData());
+            //var_dump($activity); die();
             if ($this->Activities->save($activity)) {
                 $this->Flash->success(__('The activity has been saved.'));
 
