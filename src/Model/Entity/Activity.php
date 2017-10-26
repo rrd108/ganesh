@@ -34,4 +34,13 @@ class Activity extends Entity
         '*' => true,
         'id' => false
     ];
+
+    public function isCorrectTime()
+    {
+        return $this->start <= $this->end;
+    }
+
+    public function isInFestivalInterval(){
+        return $this->festival->start <= $this->start && $this->festival->end >= $this->end;
+    }
 }
