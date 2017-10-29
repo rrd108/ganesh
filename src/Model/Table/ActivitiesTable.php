@@ -71,16 +71,19 @@ class ActivitiesTable extends Table
             ->notEmpty('name');
 
         $validator
+            ->requirePresence('start', 'create')
             ->dateTime('start')
-            ->allowEmpty('start');
+            ->notEmpty('start');    //TODO change SQL
 
         $validator
+            ->requirePresence('end', 'create')
             ->dateTime('end')
-            ->allowEmpty('end');
+            ->notEmpty('end');
 
         $validator
+            ->requirePresence('manpower', 'create')
             ->integer('manpower')
-            ->allowEmpty('manpower');
+            ->notEmpty('manpower');
 
         return $validator;
     }
