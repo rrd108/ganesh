@@ -45,9 +45,9 @@ class FestivalsFixture extends TestFixture
         [
             'id' => 1,
             'place_id' => 1,
-            'name' => 'Lorem ipsum dolor sit amet',
-            'start' => '2017-10-18 08:37:21',
-            'end' => '2017-10-18 08:37:21'
+            'name' => 'KV festival 1',
+            'start' => '2017-10-18 08:00:00',
+            'end' => '2017-10-20 20:00:00'
         ],
     ];
 }

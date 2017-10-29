@@ -41,10 +41,10 @@ class PlacesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'name' => 'Lorem ipsum dolor sit amet',
-            'address' => 'Lorem ipsum dolor sit amet',
-            'lat' => 1,
-            'lng' => 1
+            'name' => 'Krisna-völgy',
+            'address' => '8699 Somogyvámos Gauranga tér 1',
+            'lat' => null,
+            'lng' => null
         ],
     ];
 }
