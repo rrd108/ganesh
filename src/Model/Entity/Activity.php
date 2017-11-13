@@ -60,13 +60,13 @@ class Activity extends Entity
         return $hours;
     }
 
-    public function hoursWithUsers($activityuser){
+    public function hoursWithUsers($activitiesUsers){
         $hoursWithUsers = array();
         $activityHours = $this->listHours();
-        $activityuserHours = $activityuser->listHours();
+        $activitiesUsersHoury = $activitiesUsers->listHours();
         for($i = 0; $i < count($activityHours); $i++){
-            for($j = 0; $j < count($activityuserHours); $j++){
-                if($activityHours[$i] == $activityuserHours[$j]){
+            for($j = 0; $j < count($activitiesUsersHoury); $j++){
+                if($activityHours[$i] == $activitiesUsersHoury[$j]){
                     $hoursWithUsers[$i] = true;
                 }
             }
