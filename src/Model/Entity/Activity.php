@@ -45,4 +45,18 @@ class Activity extends Entity
     {
         return $festival->start <= $this->start && $festival->end >= $this->end;
     }
+
+    public function listHours()
+    {
+        $hours = array();
+        $i = 0;
+        $timestamp = $this->start->timestamp;
+        while ($timestamp < $this->end->timestamp){
+            $hour = date('H:i',$timestamp);
+            $timestamp += 3600;
+            $hours[$i] = $hour;
+            $i++;
+        }
+        return $hours;
+    }
 }

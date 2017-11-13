@@ -52,6 +52,9 @@ class ActivitiesTable extends Table
             'targetForeignKey' => 'user_id',
             'joinTable' => 'activities_users'
         ]);
+        $this->HasMany('ActivitiesUsers',[
+            'foreignKey' => 'activity_id'
+        ]);
     }
 
     /**
