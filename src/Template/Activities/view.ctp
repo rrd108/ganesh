@@ -60,9 +60,9 @@
                      <th scope="col"><?= $hour ?></th>
                 <?php endforeach; ?>
             </tr>
-            <?php foreach ($activity->users as $users): ?>
+            <?php foreach ($activity->users as $user): ?>
             <tr>
-               <td><?= h($users->username) ?></td>
+               <td><?= h($user->username) ?></td>
                 <?php foreach ($activity->listHours() as $hour):  ?>
                     <td style="background:red;"></td>
                 <?php endforeach; ?>

@@ -60,7 +60,7 @@ class Activity extends Entity
         return $hours;
     }
 
-    public function hoursWithUsers($activitiesUsers){
+    public function hoursWithUsers(int $activities_users_id = null){
         $hoursWithUsers = array();
         $activityHours = $this->listHours();
         $activitiesUsersHoury = $activitiesUsers->listHours();
