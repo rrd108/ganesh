@@ -50,10 +50,10 @@ class ActivitiesFixture extends TestFixture
             'id' => 1,
             'festival_id' => 1,
             'department_id' => 1,
-            'name' => 'Lorem ipsum dolor sit amet',
+            'name' => 'cooking',
             'start' => '2017-10-18 08:36:13',
             'end' => '2017-10-18 08:36:13',
-            'manpower' => 1
+            'manpower' => 5
         ],
     ];
 }

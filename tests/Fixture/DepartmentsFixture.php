@@ -47,7 +47,7 @@ class DepartmentsFixture extends TestFixture
             'id' => 1,
             'place_id' => 1,
             'user_id' => '414821d9-ee48-4b68-a175-f1b7fd029d44',
-            'name' => 'Lorem ipsum dolor sit amet'
+            'name' => 'KV Department 1'
         ],
     ];
 }

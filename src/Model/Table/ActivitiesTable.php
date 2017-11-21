@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -70,16 +71,19 @@ class ActivitiesTable extends Table
             ->notEmpty('name');
 
         $validator
+            ->requirePresence('start', 'create')
             ->dateTime('start')
-            ->allowEmpty('start');
+            ->notEmpty('start');    //TODO change SQL
 
         $validator
+            ->requirePresence('end', 'create')
             ->dateTime('end')
-            ->allowEmpty('end');
+            ->notEmpty('end');
 
         $validator
+            ->requirePresence('manpower', 'create')
             ->integer('manpower')
-            ->allowEmpty('manpower');
+            ->notEmpty('manpower');
 
         return $validator;
     }
@@ -96,6 +100,18 @@ class ActivitiesTable extends Table
         $rules->add($rules->existsIn(['festival_id'], 'Festivals'));
         $rules->add($rules->existsIn(['department_id'], 'Departments'));
 
+        $checkIsCorrectTime = function ($activity) {
+            $festival = $this->Festivals->get($activity->festival_id);
+            return $activity->isCorrectTime($festival);
+        };
+        $rules->add(
+            $checkIsCorrectTime,
+            'checkIsCorrectTimeActivity',
+            [
+                'errorField' => 'start',
+                'message' => __('The activity time must be in the festival time and start must be before than end')
+            ]
+        );
         return $rules;
     }
 }

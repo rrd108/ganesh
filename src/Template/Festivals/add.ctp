@@ -25,7 +25,7 @@
         <?= $this->Form->dateTime('start', [
             'minYear' => date('Y')-2,
             'maxYear' => date('Y')+2,
-            'monthNames' => false,
+            'monthNames' => true,
             'orderYear' => 'asc',
             'empty' => [
                 'year' => __('Choose year...'),
@@ -55,7 +55,7 @@
         <?= $this->Form->dateTime('end', [
             'minYear' => date('Y')-2,
             'maxYear' => date('Y')+2,
-            'monthNames' => false,
+            'monthNames' => true,
             'orderYear' => 'asc',
             'empty' => [
                 'year' => __('Choose year...'),

@@ -47,10 +47,10 @@ class ActivitiesUsersFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
-            'user_id' => '61b96a32-64ac-4be0-9f4f-b4711a5fc05b',
+            'user_id' => '30109b2d-50e6-4a67-bd9e-4c78a294360c',
             'activity_id' => 1,
-            'start' => '2017-10-18 08:36:41',
-            'end' => '2017-10-18 08:36:41',
+            'start' => '2017-10-25 17:37:28',
+            'end' => '2017-10-25 17:37:28',
             'fulltime' => 1
         ],
     ];

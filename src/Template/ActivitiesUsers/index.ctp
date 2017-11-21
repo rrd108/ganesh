@@ -31,8 +31,8 @@
             <?php foreach ($activitiesUsers as $activitiesUser): ?>
             <tr>
                 <td><?= $this->Number->format($activitiesUser->id) ?></td>
-                <td><?= $activitiesUser->has('user') ? $this->Html->link($activitiesUser->user->name, ['controller' => 'Users', 'action' => 'view', $activitiesUser->user->id]) : '' ?></td>
-                <td><?= $this->Number->format($activitiesUser->activity_id) ?></td>
+                <td><?= $activitiesUser->has('user') ? $this->Html->link($activitiesUser->user->id, ['controller' => 'Users', 'action' => 'view', $activitiesUser->user->id]) : '' ?></td>
+                <td><?= $activitiesUser->has('activity') ? $this->Html->link($activitiesUser->activity->name, ['controller' => 'Activities', 'action' => 'view', $activitiesUser->activity->id]) : '' ?></td>
                 <td><?= h($activitiesUser->start) ?></td>
                 <td><?= h($activitiesUser->end) ?></td>
                 <td><?= h($activitiesUser->fulltime) ?></td>
