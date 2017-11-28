@@ -35,3 +35,7 @@ nbproject/* # NetBeans
 /.idea
 
 /misc/ganesh.mwb.bak
+
+*.ctp~
+
+config/app\.php~
