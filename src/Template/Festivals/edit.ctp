@@ -26,9 +26,68 @@
         <?php
             echo $this->Form->control('place_id', ['options' => $places]);
             echo $this->Form->control('name');
-            echo $this->Form->control('start', ['empty' => true]);
-            echo $this->Form->control('end', ['empty' => true]);
-        ?>
+            ?>
+            <?= $this->Form->label('Festivals.start', __('Start date & time')); ?>
+        <?= $this->Form->dateTime('start', [
+            'minYear' => date('Y')-2,
+            'maxYear' => date('Y')+2,
+            'monthNames' => true,
+            'orderYear' => 'asc',
+            'empty' => [
+                'year' => __('Choose year...'),
+                'month' => __('Choose month...'),
+                'day' => __('Choose day...'),
+                'hour' => __('Choose hour...'),
+                'minute' => __('Choose minute...')
+            ],
+            'year' => [
+                'class' => 'columns medium-3'
+            ],
+            'month' => [
+                'class' => 'columns medium-5 date-form'
+            ],
+            'day' => [
+                'class' => 'columns medium-3 date-form'
+            ],
+            'hour' => [
+                'class' => 'columns medium-3'
+            ],
+            'minute' => [
+                'class' => 'columns medium-3 date-form'
+            ]
+
+        ]); ?>
+        <?= $this->Form->label('Festivals.end', __('End date & time')); ?>
+        <?= $this->Form->dateTime('end', [
+            'minYear' => date('Y')-2,
+            'maxYear' => date('Y')+2,
+            'monthNames' => true,
+            'orderYear' => 'asc',
+            'empty' => [
+                'year' => __('Choose year...'),
+                'month' => __('Choose month...'),
+                'day' => __('Choose day...'),
+                'hour' => __('Choose hour...'),
+                'minute' => __('Choose minute...')
+            ],
+            'year' => [
+                'class' => 'columns medium-3'
+            ],
+            'month' => [
+                'class' => 'columns medium-5 date-form'
+            ],
+            'day' => [
+                'class' => 'columns medium-3 date-form'
+            ],
+            'hour' => [
+                'class' => 'columns medium-3'
+            ],
+            'minute' => [
+                'class' => 'columns medium-3 date-form'
+            ]
+
+        ]); ?>
+
     </fieldset>
     <?= $this->Form->button(__('Submit'), ['class' => 'button']) ?>
     <?= $this->Form->end() ?>
