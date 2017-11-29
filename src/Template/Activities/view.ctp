@@ -1,13 +1,14 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
 <nav class="small-3 medium-2 large-2 columns" id="actions-sidebar">
     <ul class="menu vertical">
         <li class="menu-text"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Activity'), ['action' => 'edit', $activity->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Activity'), ['action' => 'delete', $activity->id], ['confirm' => __('Are you sure you want to delete # {0}?', $activity->id)]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Activity'), ['action' => 'delete', $activity->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $activity->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Activities'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Activity'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Festivals'), ['controller' => 'Festivals', 'action' => 'index']) ?> </li>
@@ -23,11 +24,13 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Festival') ?></th>
-            <td><?= $activity->has('festival') ? $this->Html->link($activity->festival->name, ['controller' => 'Festivals', 'action' => 'view', $activity->festival->id]) : '' ?></td>
+            <td><?= $activity->has('festival') ? $this->Html->link($activity->festival->name,
+                    ['controller' => 'Festivals', 'action' => 'view', $activity->festival->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Department') ?></th>
-            <td><?= $activity->has('department') ? $this->Html->link($activity->department->name, ['controller' => 'Departments', 'action' => 'view', $activity->department->id]) : '' ?></td>
+            <td><?= $activity->has('department') ? $this->Html->link($activity->department->name,
+                    ['controller' => 'Departments', 'action' => 'view', $activity->department->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Name') ?></th>
@@ -50,25 +53,41 @@
             <td><?= h($activity->end) ?></td>
         </tr>
     </table>
+    <?php
+    $distance = count($activity->activities_users);
+    debug($distance) ?>
     <div class="related">
         <h4><?= __('Related Users') ?></h4>
-        <?php if (!empty($activity->users)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Username') ?></th>
-                <?php foreach ($activity->listHours() as $hour):  ?>
-                     <th scope="col"><?= $hour ?></th>
+        <?php if (!empty($activity->activities_users)): ?>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <th scope="col"><?= __('Username') ?></th>
+                    <?php foreach ($activity->listHours() as $hour): ?>
+                        <th scope="col"><?= $hour ?></th>
+                    <?php endforeach; ?>
+                </tr>
+                <?php
+                foreach ($activity->activities_users as $activityUser): ?>
+                    <tr>
+                        <td><?= h($activityUser->user->username) ?></td>
+                        <?php foreach ($activity->listHours() as $hour): ?>
+                            <td>
+                                <span class="label <?= ($activityUser->start->format('H:i') <= $hour && $activityUser->end->format('H:i') >= $hour) ? 'success' : 'alert' ?>"></span>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
                 <?php endforeach; ?>
-            </tr>
-            <?php foreach ($activity->users as $user): ?>
-            <tr>
-               <td><?= h($user->username) ?></td>
-                <?php foreach ($activity->listHours() as $hour):  ?>
-                    <td style="background:red;"></td>
-                <?php endforeach; ?>
-            </tr>
-            <?php endforeach; ?>
-        </table>
+                <?php if (count($activity->activites_users) < ($activity->manpower)) : ?>
+                    <?php for ($i = 0; $i < 2; $i++) : ?>
+                        <tr>
+                            <td></td>
+                            <?php foreach ($activity->listHours() as $hour): ?>
+                                <td><span class="label alert"></span></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endfor; ?>
+                <?php endif; ?>
+            </table>
         <?php endif; ?>
     </div>
 </div>
