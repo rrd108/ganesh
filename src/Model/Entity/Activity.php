@@ -45,4 +45,32 @@ class Activity extends Entity
     {
         return $festival->start <= $this->start && $festival->end >= $this->end;
     }
+
+    public function listHours()
+    {
+        $hours = array();
+        $i = 0;
+        $timestamp = $this->start->timestamp;
+        while ($timestamp < $this->end->timestamp){
+            $hour = date('H:i',$timestamp);
+            $timestamp += 3600;
+            $hours[$i] = $hour;
+            $i++;
+        }
+        return $hours;
+    }
+
+    public function hoursWithUsers(int $activities_users_id = null){
+        $hoursWithUsers = array();
+        $activityHours = $this->listHours();
+        $activitiesUsersHoury = $activitiesUsers->listHours();
+        for($i = 0; $i < count($activityHours); $i++){
+            for($j = 0; $j < count($activitiesUsersHoury); $j++){
+                if($activityHours[$i] == $activitiesUsersHoury[$j]){
+                    $hoursWithUsers[$i] = true;
+                }
+            }
+        }
+        return $hoursWithUsers;
+    }
 }

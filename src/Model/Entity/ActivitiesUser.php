@@ -33,4 +33,17 @@ class ActivitiesUser extends Entity
         'user_id' => false,
         'activitie_id' => false
     ];
+
+    public function listHours(){
+        $hours = array();
+        $i = 0;
+        $timestamp = $this->start->timestamp;
+        while ($timestamp < $this->end->timestamp){
+            $hour = date('H:i',$timestamp);
+            $timestamp += 3600;
+            $hours[$i] = $hour;
+            $i++;
+        }
+        return $hours;
+    }
 }
