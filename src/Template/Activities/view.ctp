@@ -54,12 +54,12 @@
         </tr>
     </table>
     <?php
-    $distance = count($activity->activities_users);
-    debug($distance) ?>
+    $distance = count($activity->activities_users) - $activity->manpower;
+    ?>
     <div class="related">
         <h4><?= __('Related Users') ?></h4>
         <?php if (!empty($activity->activities_users)): ?>
-            <table cellpadding="0" cellspacing="0">
+            <table class="no-pad">
                 <tr>
                     <th scope="col"><?= __('Username') ?></th>
                     <?php foreach ($activity->listHours() as $hour): ?>
@@ -72,7 +72,12 @@
                         <td><?= h($activityUser->user->username) ?></td>
                         <?php foreach ($activity->listHours() as $hour): ?>
                             <td>
-                                <span class="label <?= ($activityUser->start->format('H:i') <= $hour && $activityUser->end->format('H:i') >= $hour) ? 'success' : 'alert' ?>"></span>
+                                <span class="
+                                <?= ($activityUser->start->format('H:i') <= $hour
+                                    && $activityUser->end->format('H:i') >= $hour)
+                                    ? 'label success'
+                                    : '' ?> full">
+                                </span>
                             </td>
                         <?php endforeach; ?>
                     </tr>
@@ -82,7 +87,7 @@
                         <tr>
                             <td></td>
                             <?php foreach ($activity->listHours() as $hour): ?>
-                                <td><span class="label alert"></span></td>
+                                <td><span class="label alert full"></span></td>
                             <?php endforeach; ?>
                         </tr>
                     <?php endfor; ?>
