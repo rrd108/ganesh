@@ -16,3 +16,12 @@
 .no-pad .label {
     border-radius: 0;
 }
+
+span.enough-person{
+    background: #23ff4b;
+    color: #0a0a0a;
+}
+span.few-person{
+    background: #ff22f0;
+    color: #0a0a0a;
+}

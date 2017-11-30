@@ -48,7 +48,7 @@ class Activity extends Entity
 
     public function listHours()
     {
-        $hours = array();
+        $hours = [];
         $i = 0;
         $timestamp = $this->start->timestamp;
         while ($timestamp < $this->end->timestamp){

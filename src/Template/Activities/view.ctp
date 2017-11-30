@@ -21,38 +21,70 @@
 </nav>
 <div class="activities view small-9 medium-10 large-10 columns content">
     <h3><?= h($activity->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Festival') ?></th>
-            <td><?= $activity->has('festival') ? $this->Html->link($activity->festival->name,
-                    ['controller' => 'Festivals', 'action' => 'view', $activity->festival->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Department') ?></th>
-            <td><?= $activity->has('department') ? $this->Html->link($activity->department->name,
-                    ['controller' => 'Departments', 'action' => 'view', $activity->department->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($activity->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($activity->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Manpower') ?></th>
-            <td><?= $this->Number->format($activity->manpower) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Start') ?></th>
-            <td><?= h($activity->start) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('End') ?></th>
-            <td><?= h($activity->end) ?></td>
-        </tr>
-    </table>
+    <div class="row">
+        <table class="vertical-table small-12 medium-12 large-6 vertical-table small-12 medium-12 large-6 columns">
+            <tr>
+                <th scope="row"><?= __('Festival') ?></th>
+                <td><?= $activity->has('festival') ? $this->Html->link($activity->festival->name,
+                        ['controller' => 'Festivals', 'action' => 'view', $activity->festival->id]) : '' ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Department') ?></th>
+                <td><?= $activity->has('department') ? $this->Html->link($activity->department->name,
+                        ['controller' => 'Departments', 'action' => 'view', $activity->department->id]) : '' ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Name') ?></th>
+                <td><?= h($activity->name) ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Id') ?></th>
+                <td><?= $this->Number->format($activity->id) ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Manpower') ?></th>
+                <td><?= $this->Number->format($activity->manpower) ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('Start') ?></th>
+                <td><?= h($activity->start) ?></td>
+            </tr>
+            <tr>
+                <th scope="row"><?= __('End') ?></th>
+                <td><?= h($activity->end) ?></td>
+            </tr>
+        </table>
+        <div class="colums large-offset-1"></div>
+        <table class="vertical-table small-12 medium-12 large-5 columns">
+            <tr>
+                <th colspan="2"><?= __('Legend') ?></th>
+            </tr>
+            <tr>
+                <td><?= __('People apply') ?></td>
+                <td class="no-pad"><span class="label success full"></span></td>
+            </tr>
+            <tr>
+                <td><?= __('Need person') ?></td>
+                <td class="no-pad"><span class="label alert full"></span></td>
+            </tr>
+            <tr>
+                <td><?= __('Too lot person') ?></td>
+                <td class="no-pad"><span class="label primary full"></span></td>
+            </tr>
+            <tr>
+                <td><?= __('Enough person') ?></td>
+                <td class="no-pad"><span class="label enough-person full"></span></td>
+            </tr>
+            <tr>
+                <td><?= __('Few person') ?></td>
+                <td class="no-pad"><span class="label few-person full"></span></td>
+            </tr>
+            <tr>
+                <td><?= __('No person') ?></td>
+                <td class="no-pad"><span class="label warning full"></span></td>
+            </tr>
+        </table>
+    </div>
     <?php
     $distance = count($activity->activities_users) - $activity->manpower;
     ?>
@@ -63,9 +95,9 @@
                 <tr>
                     <th scope="col"><?= __('Username') ?></th>
                     <?php foreach ($activity->listHours() as $hour):
-                        $nextHour = date('H:i',strtotime($hour)+3600);
+                        $nextHour = date('H:i', strtotime($hour) + 3600);
                         ?>
-                        <th scope="col"><?= $hour.'-'.$nextHour ?></th>
+                        <th scope="col"><?= $hour . '-' . $nextHour ?></th>
                     <?php endforeach; ?>
                 </tr>
                 <?php
@@ -113,16 +145,45 @@
                 <?php endforeach; ?>
                 <tr>
                     <td><?= __('Summary') ?></td>
-                    <?php foreach ($activity->listHours() as $hour): ?>
-                        <td>
-                            <?php $hourFull = $hourCount[$hour] > $activity->manpower
-                            ?>
-                            <span class="
-                                <?= ($hourFull)
-                                ? 'label primary'
-                                : '' ?> full">
+                    <?php
+                    $counter = 0;
+                    foreach ($activity->listHours() as $hour): ?>
+
+                            <td>
+                                <?php $hourFullPlus = $hourCount[$hour] > $activity->manpower ?>
+                                <span class="
+                                <?= ($hourFullPlus)
+                                    ? 'label primary'
+                                    : '' ?> full"> <?= $hourCount[$hour]. ' '.$hour ?>
                                 </span>
-                        </td>
+                            </td>
+                            <td>
+                                <?php $hourFull = $hourCount[$hour] == $activity->manpower ?>
+                                <span class="
+                                <?= ($hourFullPlus)
+                                    ? 'label enough-person'
+                                    : '' ?> full"> <?= $hourCount[$hour]. ' '.$hour ?>
+                                </span>
+                            </td>
+                            <td>
+                                <?php $hourWithFewPerson = $hourCount[$hour] <= $activity->manpower
+                                    && $hourCount[$hour] != 0
+                                ?>
+                                <span class="
+                                <?= ($hourWithFewPerson)
+                                    ? 'label few-person'
+                                    : '' ?> full"><?= $hourCount[$hour]. ' '.$hour ?>
+                                </span>
+                            </td>
+                            <td>
+                                <?php $hourWithoutFewPerson = $hourCount[$hour] != 0
+                                ?>
+                                <span class="
+                                <?= ($hourWithFewPerson)
+                                    ? 'label warning'
+                                    : '' ?> full"><?= $hourCount[$hour]. ' '.$hour ?>
+                                </span>
+                            </td>
                     <?php endforeach; ?>
                 </tr>
             </table>
