@@ -62,19 +62,30 @@
             <table class="no-pad">
                 <tr>
                     <th scope="col"><?= __('Username') ?></th>
-                    <?php foreach ($activity->listHours() as $hour): ?>
-                        <th scope="col"><?= $hour ?></th>
+                    <?php foreach ($activity->listHours() as $hour):
+                        $nextHour = date('H:i',strtotime($hour)+3600);
+                        ?>
+                        <th scope="col"><?= $hour.'-'.$nextHour ?></th>
                     <?php endforeach; ?>
                 </tr>
                 <?php
+                $hourCount = [];
+                foreach ($activity->listHours() as $hour) {
+                    $hourCount[$hour] = 0;
+                }
                 foreach ($activity->activities_users as $activityUser): ?>
                     <tr>
                         <td><?= h($activityUser->user->username) ?></td>
                         <?php foreach ($activity->listHours() as $hour): ?>
                             <td>
+                                <?php $hourHasUser = $activityUser->start->format('H:i') <= $hour
+                                    && $activityUser->end->format('H:i') > $hour;
+                                if ($hourHasUser) {
+                                    $hourCount[$hour]++;
+                                }
+                                ?>
                                 <span class="
-                                <?= ($activityUser->start->format('H:i') <= $hour
-                                    && $activityUser->end->format('H:i') >= $hour)
+                                <?= ($hourHasUser)
                                     ? 'label success'
                                     : '' ?> full">
                                 </span>
@@ -82,16 +93,38 @@
                         <?php endforeach; ?>
                     </tr>
                 <?php endforeach; ?>
-                <?php if (count($activity->activites_users) < ($activity->manpower)) : ?>
-                    <?php for ($i = 0; $i < 2; $i++) : ?>
-                        <tr>
-                            <td></td>
-                            <?php foreach ($activity->listHours() as $hour): ?>
-                                <td><span class="label alert full"></span></td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endfor; ?>
-                <?php endif; ?>
+                <?php foreach ($activity->activities_users as $activityUser):
+                    ?>
+                    <tr>
+                        <td></td>
+                        <?php foreach ($activity->listHours() as $hour): ?>
+                            <td>
+                                <?php $hourHasUser = $activityUser->start->format('H:i') <= $hour
+                                    && $activityUser->end->format('H:i') > $hour;
+                                ?>
+                                <span class="
+                                <?= ($hourHasUser)
+                                    ? ''
+                                    : 'label alert' ?> full">
+                                </span>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td><?= __('Summary') ?></td>
+                    <?php foreach ($activity->listHours() as $hour): ?>
+                        <td>
+                            <?php $hourFull = $hourCount[$hour] > $activity->manpower
+                            ?>
+                            <span class="
+                                <?= ($hourFull)
+                                ? 'label primary'
+                                : '' ?> full">
+                                </span>
+                        </td>
+                    <?php endforeach; ?>
+                </tr>
             </table>
         <?php endif; ?>
     </div>
