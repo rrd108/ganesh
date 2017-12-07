@@ -154,7 +154,7 @@
                                 <span class="
                                 <?= ($hourFullPlus)
                                     ? 'label primary'
-                                    : '' ?> full"> <?= $hourCount[$hour]. ' '.$hour ?>
+                                    : '' ?> full">
                                 </span>
                             </td>
                             <td>
@@ -162,7 +162,7 @@
                                 <span class="
                                 <?= ($hourFullPlus)
                                     ? 'label enough-person'
-                                    : '' ?> full"> <?= $hourCount[$hour]. ' '.$hour ?>
+                                    : '' ?> full">
                                 </span>
                             </td>
                             <td>
@@ -172,7 +172,7 @@
                                 <span class="
                                 <?= ($hourWithFewPerson)
                                     ? 'label few-person'
-                                    : '' ?> full"><?= $hourCount[$hour]. ' '.$hour ?>
+                                    : '' ?> full">
                                 </span>
                             </td>
                             <td>
@@ -181,7 +181,7 @@
                                 <span class="
                                 <?= ($hourWithFewPerson)
                                     ? 'label warning'
-                                    : '' ?> full"><?= $hourCount[$hour]. ' '.$hour ?>
+                                    : '' ?> full">
                                 </span>
                             </td>
                     <?php endforeach; ?>
