@@ -64,16 +64,12 @@
                 <td class="no-pad"><span class="label success full"></span></td>
             </tr>
             <tr>
-                <td><?= __('Need person') ?></td>
-                <td class="no-pad"><span class="label alert full"></span></td>
-            </tr>
-            <tr>
                 <td><?= __('Too lot person') ?></td>
                 <td class="no-pad"><span class="label primary full"></span></td>
             </tr>
             <tr>
                 <td><?= __('Enough person') ?></td>
-                <td class="no-pad"><span class="label enough-person full"></span></td>
+                <td class="no-pad"><span class="label success full"></span></td>
             </tr>
             <tr>
                 <td><?= __('Few person') ?></td>
@@ -81,13 +77,10 @@
             </tr>
             <tr>
                 <td><?= __('No person') ?></td>
-                <td class="no-pad"><span class="label warning full"></span></td>
+                <td class="no-pad"><span class="label alert full"></span></td>
             </tr>
         </table>
     </div>
-    <?php
-    $distance = count($activity->activities_users) - $activity->manpower;
-    ?>
     <div class="related">
         <h4><?= __('Related Users') ?></h4>
         <?php if (!empty($activity->activities_users)): ?>
@@ -125,65 +118,20 @@
                         <?php endforeach; ?>
                     </tr>
                 <?php endforeach; ?>
-                <?php foreach ($activity->activities_users as $activityUser):
-                    ?>
-                    <tr>
-                        <td></td>
-                        <?php foreach ($activity->listHours() as $hour): ?>
-                            <td>
-                                <?php $hourHasUser = $activityUser->start->format('H:i') <= $hour
-                                    && $activityUser->end->format('H:i') > $hour;
-                                ?>
-                                <span class="
-                                <?= ($hourHasUser)
-                                    ? ''
-                                    : 'label alert' ?> full">
-                                </span>
-                            </td>
-                        <?php endforeach; ?>
-                    </tr>
-                <?php endforeach; ?>
                 <tr>
-                    <td><?= __('Summary') ?></td>
+                    <td><b><?= __('Summary') ?></b></td>
                     <?php
-                    $counter = 0;
                     foreach ($activity->listHours() as $hour): ?>
-
-                            <td>
-                                <?php $hourFullPlus = $hourCount[$hour] > $activity->manpower ?>
-                                <span class="
-                                <?= ($hourFullPlus)
-                                    ? 'label primary'
-                                    : '' ?> full">
-                                </span>
-                            </td>
-                            <td>
-                                <?php $hourFull = $hourCount[$hour] == $activity->manpower ?>
-                                <span class="
-                                <?= ($hourFullPlus)
-                                    ? 'label enough-person'
-                                    : '' ?> full">
-                                </span>
-                            </td>
-                            <td>
-                                <?php $hourWithFewPerson = $hourCount[$hour] <= $activity->manpower
-                                    && $hourCount[$hour] != 0
-                                ?>
-                                <span class="
-                                <?= ($hourWithFewPerson)
-                                    ? 'label few-person'
-                                    : '' ?> full">
-                                </span>
-                            </td>
-                            <td>
-                                <?php $hourWithoutFewPerson = $hourCount[$hour] != 0
-                                ?>
-                                <span class="
-                                <?= ($hourWithFewPerson)
-                                    ? 'label warning'
-                                    : '' ?> full">
-                                </span>
-                            </td>
+                        <td>
+                            <span class="
+                                <?= ($hourCount[$hour] > $activity->manpower) ? 'label primary ' : '' ?>
+                                <?= ($hourFull = $hourCount[$hour] == $activity->manpower) ? 'label success' : '' ?>
+                                <?= ($hourCount[$hour] < $activity->manpower && $hourCount[$hour] != 0)
+                                    ? 'label few-person ' : '' ?>
+                                <?= ($hourWithoutPerson = $hourCount[$hour] == 0) ? 'label alert ' : '' ?>
+                                full">
+                            </span>
+                        </td>
                     <?php endforeach; ?>
                 </tr>
             </table>
