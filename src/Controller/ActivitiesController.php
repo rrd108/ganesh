@@ -40,7 +40,7 @@ class ActivitiesController extends AppController
     public function view($id = null)
     {
         $activity = $this->Activities->get($id, [
-            'contain' => ['Festivals', 'Departments','ActivitiesUsers','ActivitiesUsers.Users']
+            'contain' => ['Festivals', 'Departments', 'ActivitiesUsers', 'ActivitiesUsers.Users']
         ]);
         $this->set('activity', $activity);
         $this->set('_serialize', ['activity']);
@@ -65,7 +65,8 @@ class ActivitiesController extends AppController
         }
         $festivals = $this->Activities->Festivals->find('list', ['limit' => 200]);
         $departments = $this->Activities->Departments->find('list', ['limit' => 200]);
-        $users = $this->Activities->Users->find('list', ['limit' => 200]);
+        $users = $this->Activities->Users->find('list',
+            ['keyField' => 'id', 'valueField' => 'username', 'limit' => 200]);
         $this->set(compact('activity', 'festivals', 'departments', 'users'));
         $this->set('_serialize', ['activity']);
     }
@@ -93,7 +94,8 @@ class ActivitiesController extends AppController
         }
         $festivals = $this->Activities->Festivals->find('list', ['limit' => 200]);
         $departments = $this->Activities->Departments->find('list', ['limit' => 200]);
-        $users = $this->Activities->Users->find('list', ['limit' => 200]);
+        $users = $this->Activities->Users->find('list',
+            ['keyField' => 'id', 'valueField' => 'username', 'limit' => 200]);
         $this->set(compact('activity', 'festivals', 'departments', 'users'));
         $this->set('_serialize', ['activity']);
     }
