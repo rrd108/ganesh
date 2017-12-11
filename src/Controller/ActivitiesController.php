@@ -65,7 +65,7 @@ class ActivitiesController extends AppController
         }
         $festivals = $this->Activities->Festivals->find('list', ['limit' => 200]);
         $departments = $this->Activities->Departments->find('list', ['limit' => 200]);
-        $users = $this->Activities->Users->find('list', ['limit' => 200]);
+        $users = $this->Activities->Users->find('list', ['limit' => 200])->where(['Users.role' => 'manager', 'OR' => ['Users.role' => 'superuser']]);
         $this->set(compact('activity', 'festivals', 'departments', 'users'));
         $this->set('_serialize', ['activity']);
     }
@@ -93,7 +93,7 @@ class ActivitiesController extends AppController
         }
         $festivals = $this->Activities->Festivals->find('list', ['limit' => 200]);
         $departments = $this->Activities->Departments->find('list', ['limit' => 200]);
-        $users = $this->Activities->Users->find('list', ['limit' => 200]);
+        $users = $this->Activities->Users->find('list', ['limit' => 200])->where(['Users.role' => 'manager', 'OR' => ['Users.role' => 'superuser']]);;
         $this->set(compact('activity', 'festivals', 'departments', 'users'));
         $this->set('_serialize', ['activity']);
     }
